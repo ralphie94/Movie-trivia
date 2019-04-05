@@ -1,9 +1,31 @@
+body {
+    background: rgb(4,6,34);
+    background: radial-gradient(circle, rgba(4,6,34,1) 6%, rgba(0,0,0,1) 69%, rgba(22,5,119,1) 100%);
+}
+
 h1 {
     text-align: center;
+    text-shadow: 0 1px 0 #ccc,
+    0 2px 0 #e6e6e6,
+    0 3px 0 rgb(213, 213, 214),
+    0 4px 0 #e6e6e6,
+    0 5px 0 rgb(222, 222, 230),
+    0 6px 1px rgba(30, 14, 175, 0.1),
+    0 0 5px rgba(26, 24, 170, 0.1),
+    0 1px 3px rgba(48, 51, 194, 0.3),
+    0 3px 5px rgba(36, 45, 168, 0.2),
+    0 5px 10px rgba(41, 39, 168, 0.25),
+    0 10px 10px rgba(35, 33, 165, 0.2),
+    0 20px 20px rgba(40, 32, 156, 0.15);
+    font-family: 'Lobster', cursive;
+    font-size: 90px
+
 }
 
 h2 {
     text-align: center;
+    color: #030d7d;
+    font-family: 'Lobster', cursive;
 }
 
 #image {
@@ -12,6 +34,7 @@ h2 {
     margin: auto;
     margin-top: 53px;
     height: 265px;
+
 }
 
 .container {

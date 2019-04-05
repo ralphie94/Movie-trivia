@@ -36,7 +36,8 @@ const movies = [
     {title: "A Bronx Tale", image: "bronxtale.jpg"},
     {title: "The Shining", image: "shining.jpg"},
     {title: "The Fly", image: "fly.jpg"},
-    {title: "The Color of Money", image: "color.jpg"}
+    {title: "The Color of Money", image: "color.jpg"},
+    {title: "Inglourious Basterds", image: "basterds.jpg"}
 ];
 
 const img = $("#image")
@@ -46,7 +47,7 @@ const $btnB = $("#b")
 const $btnC = $("#c")
 const $btnD = $("#d")
 const $buttons = $(".guess")
-const $button = $("button")
+const $button = $(".btn")
 
 const player = {
     money: 10,
@@ -76,7 +77,6 @@ function render () {
 }
 
 init();
-endGame();
 
 function makeChoices () {
     choices = []
@@ -85,20 +85,21 @@ function makeChoices () {
     choices.push(movies[random])
    }
    choices.splice(Math.floor(Math.random() * 4), 0, player.question[player.question.length-1])
-    // movies.splice([random], 1)
-    // $btnA.append(movies[random].title)
-}
+ }
 
 $next.on("click", (e) => {
     render();
     init();
 })
 
-function endGame () {
-    if (movies.length === 5){
-        alert("Game Over");
+$buttons.on("click", (e) => {
+    if (e.target.innerText === player.question[0].title) {
+        $("#myModal").modal("show")
+    } else {
+        $("#wrongModal").modal("show")
     }
-}
+ })
+
 
 
 
