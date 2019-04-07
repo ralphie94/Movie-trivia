@@ -1,9 +1,8 @@
-/*----- constants -----*/ 
 let choices = []
 const movies = [
     {title: "Raging Bull", image: "raging bull.png"}, 
     {title: "Star Wars", image: "starwars.jpg"}, 
-    {title: "Goodfellas", image: "goodfellas_poster.jpg"}, 
+    {title: "Goodfellas", image: "goodfellaspic.jpg"}, 
     {title: "Taxi Driver", image: "taxidriver.jpg"},
     {title: "Pulp Fiction", image: "pulpfiction.jpg"},
     {title: "A Clockwork Orange", image: "clockwork.jpg"},
@@ -32,7 +31,7 @@ const movies = [
     {title: "Casino", image: "casino.jpg"},
     {title: "Kill Bill", image: "killbill.jpg"},
     {title: "Death Proof", image: "deathproof.jpg"},
-    {title: "Once Upon a Time in America", iage: "outa.jpg"},
+    {title: "Once Upon a Time in America", image: "outa.jpg"},
     {title: "A Bronx Tale", image: "bronxtale.jpg"},
     {title: "The Shining", image: "shining.jpg"},
     {title: "The Fly", image: "fly.jpg"},
@@ -48,20 +47,16 @@ const $btnC = $("#c")
 const $btnD = $("#d")
 const $buttons = $(".guess")
 const $button = $(".btn")
+const $money = $("#money span")
 
 const player = {
-    money: 10,
+    money: 20,
     question: [],
 }
 
-
-/*----- app's state (variables) -----*/ 
-/*----- cached element references -----*/ 
-/*----- event listeners -----*/ 
-/*----- functions -----*/
-
 function init() {
         let index = Math.floor(Math.random() * movies.length)
+        player.question = []
         player.question.push(movies[index])
         movies.splice([index], 1)
         console.log(`Player was given ${player.question[player.question.length-1].title}`);
@@ -87,18 +82,49 @@ function makeChoices () {
    choices.splice(Math.floor(Math.random() * 4), 0, player.question[player.question.length-1])
  }
 
-$next.on("click", (e) => {
-    render();
-    init();
-})
-
 $buttons.on("click", (e) => {
+    clearInterval(interval);
     if (e.target.innerText === player.question[0].title) {
-        $("#myModal").modal("show")
+        // $("#myModal").modal("show")
+         $money.text(player.money += 5);
+         render();
+         init();
+         timeLeft = 10;
+         timer();
+         $(e.target).css("backgroundColor", "green");
     } else {
-        $("#wrongModal").modal("show")
+        // $("#wrongModal").modal("show")
+        $money.text(player.money -= 5);
+        render();
+        init();
+        timeLeft = 10;
+        timer();
+        $(e.target).css("backgroundColor", "red");
     }
- })
+})
+ timer();
+ let timeLeft = 10;
+
+ function timer () {
+    interval = window.setInterval(function() {
+        timeLeft -= 1;
+        if (timeLeft <= 0){
+            $("#lateModal").modal("show")
+            $money.text(player.money -= 5)
+            clearInterval(interval)
+            render();
+            init();
+            timeLeft = 10;
+            timer();
+            return;
+        }
+        $('.timer').text("Timer: "+ timeLeft)
+        }, 1000)
+}
+
+
+ 
+
 
 
 

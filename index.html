@@ -16,13 +16,14 @@
 <body>
     <h1>Movie Trivia</h1>
     <h2>Name the movie!</h2>
+    <h3 id ="money">Your Money: $<span>20</span></h3>
+    <div class ="timer">Timer</div>
     <img id ="image"></img>
     <div class ="container">
         <button type="button" class="btn btn-primary guess" id ="a"></button>
         <button type="button" class="btn btn-primary guess" id ="b"></button>
         <button type="button" class="btn btn-primary guess" id ="c"></button>
         <button type="button" class="btn btn-primary guess" id ="d"></button>
-        <button type="button" class="btn btn-primary" id ="next">Next Question</button>
 
         <div class ="modal fade bd-example-modal-sm" tabindex ="-1" role ="dialog" aria-labelledby ="mySmallModalLabel" aria-hidden ="true" id ="myModal">
             <div class ="modal-dialog modal-sm">
@@ -36,6 +37,14 @@
                 <div class ="modal-dialog modal-sm">
                     <div class ="modal-content">
                         Wrong!
+                    </div>
+                </div>
+            </div>
+
+        <div class ="modal fade bd-example-modal-sm" tabindex ="-1" role ="dialog" aria-labelledby ="mySmallModalLabel" aria-hidden ="true" id ="lateModal">
+                <div class ="modal-dialog modal-sm">
+                    <div class ="modal-content">
+                        Too late!
                     </div>
                 </div>
             </div>

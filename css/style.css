@@ -10,22 +10,39 @@ h1 {
     0 3px 0 rgb(213, 213, 214),
     0 4px 0 #e6e6e6,
     0 5px 0 rgb(222, 222, 230),
-    0 6px 1px rgba(30, 14, 175, 0.1),
-    0 0 5px rgba(26, 24, 170, 0.1),
-    0 1px 3px rgba(48, 51, 194, 0.3),
-    0 3px 5px rgba(36, 45, 168, 0.2),
-    0 5px 10px rgba(41, 39, 168, 0.25),
-    0 10px 10px rgba(35, 33, 165, 0.2),
-    0 20px 20px rgba(40, 32, 156, 0.15);
+    0 15px 20px rgba(111, 145, 238, 0.1),
+    0 0 5px rgba(83, 80, 233, 0.1),
+    0 1px 3px rgba(70, 72, 230, 0.3),
+    0 3px 5px rgba(78, 88, 236, 0.2),
+    0 5px 10px rgba(74, 126, 236, 0.25),
+    0 10px 10px rgba(84, 122, 247, 0.2),
+    0 20px 20px rgba(68, 108, 241, 0.15);
+    color: #182183;
     font-family: 'Lobster', cursive;
-    font-size: 90px
-
+    font-size: 90px;
+    animation-name: moveInLeft;
+    animation-duration: 3s;
+    backface-visibility: hidden;
 }
 
 h2 {
     text-align: center;
-    color: #030d7d;
+    color: #2936c4;
     font-family: 'Lobster', cursive;
+    animation-name: moveInRight;
+    animation-duration: 3s;
+    backface-visibility: hidden;
+}
+
+h3 {
+    color: #1b28b6;
+    font-family: 'Lobster', cursive;
+}
+
+.timer {
+    color: #1b28b6;
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
 }
 
 #image {
@@ -34,7 +51,7 @@ h2 {
     margin: auto;
     margin-top: 53px;
     height: 265px;
-
+    border-radius: 20px;
 }
 
 .container {
@@ -56,4 +73,44 @@ h2 {
 #next {
     display: flex;
     float: right;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn:active {
+    transform: translateY(-1px);
 }
