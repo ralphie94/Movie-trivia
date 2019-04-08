@@ -44,7 +44,8 @@ const movies = [
     {title: "The Master", image: "master.jpg"},
     {title: "Inherent Vice", image: "inherentvice.png"},
     {title: "True Romance", image: "trueromance.jpg"},
-    {title: "Seven", image: "seven.jpg"}
+    {title: "Seven", image: "seven.jpg"},
+    {title: "Fight Club", image: "fightclub.jpg"}
 ];
 
 const choice = [
@@ -92,18 +93,16 @@ const choice = [
     {title: "The Master", image: "master.jpg"},
     {title: "Inherent Vice", image: "inherentvice.png"},
     {title: "True Romance", image: "trueromance.jpg"},
-    {title: "Seven", image: "seven.jpg"}
+    {title: "Seven", image: "seven.jpg"},
+    {title: "Fight Club", image: "fightclub.jpg"}
 ];
 
 const img = $("#image")
-const $next = $("#next")
-const $btnA = $("#a")
-const $btnB = $("#b")
-const $btnC = $("#c")
-const $btnD = $("#d")
 const $buttons = $(".guess")
 const $button = $(".btn")
 const $money = $("#money span")
+const $text = $("#textbox")
+const $difficulty = $("#difficulty")
 
 const player = {
     money: 20,
@@ -118,24 +117,35 @@ function init() {
         console.log(`Player was given ${player.question[player.question.length-1].title}`);
         makeChoices();
         render();
+        gameOver();
 }
 
 function render () {
     img.attr("src", player.question[player.question.length-1].image);
     for (let i = 0; i < $buttons.length; i++){
       $($buttons[i]).text(choices[i].title)
+      gameOver();
     }
 }
 
 init();
 
+function checkToSeeIfMovieIsInArray(choices, movie) {
+    return choices.some((c) => c.title === movie.title)
+}
+
 function makeChoices () {
     choices = []
    for (let i = 0; i < 3; i++) {
     let random = Math.floor(Math.random() * choice.length)
-    choices.push(choice[random])
+    if(choice[random].title !== player.question[player.question.length-1].title && !checkToSeeIfMovieIsInArray(choices, choice[random] )) {
+        choices.push(choice[random])
+    } else {
+        i--
+    }
    }
    choices.splice(Math.floor(Math.random() * 4), 0, player.question[player.question.length-1])
+   gameOver();
  }
 
 $buttons.on("click", (e) => {
@@ -147,6 +157,9 @@ $buttons.on("click", (e) => {
          timeLeft = 10;
          timer();
          $(e.target).css("backgroundColor", "green");
+         window.setTimeout (function() {
+             $(e.target).css("backgroundColor", "");
+         }, 400);
     } else {
         $money.text(player.money -= 5);
         render();
@@ -154,8 +167,13 @@ $buttons.on("click", (e) => {
         timeLeft = 10;
         timer();
         $(e.target).css("backgroundColor", "red");
+        window.setTimeout (function() {
+            $(e.target).css("backgroundColor", "");
+        }, 400);
+        gameOver();
     }
 })
+
  timer();
  let timeLeft = 10;
 
@@ -163,18 +181,63 @@ $buttons.on("click", (e) => {
     interval = window.setInterval(function() {
         timeLeft -= 1;
         if (timeLeft <= 0){
-            $("#lateModal").modal("show")
             $money.text(player.money -= 5)
             clearInterval(interval)
             render();
             init();
             timeLeft = 10;
             timer();
+            $buttons.css("backgroundColor", "red");
+            window.setTimeout (function() {
+                $buttons.css("backgroundColor", "");
+            }, 400);
+            gameOver();
             return;
         }
         $('.timer').text("Timer: "+ timeLeft)
         }, 1000)
 }
+
+$text.hide();
+
+$difficulty.on("click", (e) => {
+    $text.show();
+    $buttons.hide();
+});
+
+$("#submit-btn").on("click", () => {
+    clearInterval(interval)
+    const valueOfInput = $("#txt").val();
+    if (valueOfInput === player.question[player.question.length-1].title){
+        $money.text(player.money += 5);
+        render();
+        init();
+        timeLeft = 15;
+        timer();
+        $("#txt").val("");
+    } else {
+        $money.text(player.money -= 5);
+        render();
+        init();
+        timeLeft = 15;
+        timer();
+        $("#txt").val("");
+    }
+});
+
+function gameOver() {
+    if (player.money === 0 || movies.length === 0) {
+        clearInterval(interval);
+        img.attr("src", "gameover.jpg");
+        $buttons.hide();
+    }
+}
+
+
+
+
+
+
 
 
 

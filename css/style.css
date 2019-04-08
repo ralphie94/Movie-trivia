@@ -54,6 +54,13 @@ h3 {
     border-radius: 20px;
 }
 
+#textbox {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 25px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -68,11 +75,6 @@ h3 {
     margin: 20px;
     padding: 10px;
     margin-top: 10px;
-}
-
-#next {
-    display: flex;
-    float: right;
 }
 
 @keyframes moveInLeft {
