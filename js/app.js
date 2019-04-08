@@ -103,6 +103,7 @@ const $button = $(".btn")
 const $money = $("#money span")
 const $text = $("#textbox")
 const $difficulty = $("#difficulty")
+const $easy = $("#easy")
 
 const player = {
     money: 20,
@@ -199,11 +200,27 @@ $buttons.on("click", (e) => {
 }
 
 $text.hide();
+$easy.hide();
 
 $difficulty.on("click", (e) => {
+    clearInterval(interval);
+    timeLeft = 15;
+    timer();
     $text.show();
     $buttons.hide();
+    $difficulty.hide();
+    $easy.show();
 });
+
+$easy.on("click", (e) => {
+    clearInterval(interval);
+    timeLeft = 10;
+    timer();
+    $buttons.show();
+    $text.hide();
+    $difficulty.show();
+    $easy.hide();
+})
 
 $("#submit-btn").on("click", () => {
     clearInterval(interval)
