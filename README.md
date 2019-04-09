@@ -17,6 +17,7 @@ Be careful! You have a time limit each question!
 * jQuery
 
 ## Getting Started
+https://ralphie94.github.io/Movie-trivia/
 
 ## Next Steps
 There are more features I would like to add to this game such as a hint button and a bet button. The bet button would
