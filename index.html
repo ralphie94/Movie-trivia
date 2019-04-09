@@ -15,18 +15,20 @@
 </head>
 <body>
     <h1>Movie Trivia</h1>
-    <h2>Name the movie!</h2>
-    <h3 id ="money">Your Money: $<span>20</span></h3>
+        <h2>Name the movie!</h2>
+        <h3 id ="money">Your Money: $<span>20</span></h3>
     <div class ="timer">Timer</div>
     <button type="button" class="btn btn-primary btn-sm" id ="difficulty">Hard Mode</button>
     <button type="button" class="btn btn-primary btn-sm" id ="easy">Easy Mode</button>
     <img id ="image"></img>
-    <form>
+    
+    <form autocomplete="off">
     <div class ="textbox" id ="textbox">
         <input type ="text" id ="txt" placeholder ="Name the movie">
         <input type ="submit" id ="submit-btn">
     </div>
     </form>
+    
     <div class ="container">
         <button type="button" class="btn btn-primary guess" id ="a"></button>
         <button type="button" class="btn btn-primary guess" id ="b"></button>
