@@ -220,10 +220,11 @@ $easy.on("click", (e) => {
     $text.hide();
     $difficulty.show();
     $easy.hide();
-})
+});
 
-$("#submit-btn").on("click", () => {
-    clearInterval(interval)
+$("form").on("submit", (e) => {
+    clearInterval(interval);
+    e.preventDefault();
     const valueOfInput = $("#txt").val();
     if (valueOfInput === player.question[player.question.length-1].title){
         $money.text(player.money += 5);
