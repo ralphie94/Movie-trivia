@@ -226,7 +226,7 @@ $("form").on("submit", (e) => {
     clearInterval(interval);
     e.preventDefault();
     const valueOfInput = $("#txt").val();
-    if (valueOfInput === player.question[player.question.length-1].title){
+    if (valueOfInput.toLowerCase() === player.question[player.question.length-1].title.toLowerCase()){
         $money.text(player.money += 5);
         render();
         init();
